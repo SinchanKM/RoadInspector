@@ -17,12 +17,17 @@ app=Flask(__name__)
 #     return "done"
 @app.route('/check',methods=['POST'])
 def index1():
-    DETECTION.main()
-    return "True"
-
+    coordinates = request.form.get('coordinates')
+    result = DETECTION.main()
+    if (result):
+        with open("coordinates.txt", "a") as file:
+            file.write(coordinates+",")
 @app.route('/getObstacles',methods=['POST'])
 def index():
-    return "True"
+    coordinates = request.form.get('coordinates')
+    with open('data.txt', 'r') as myfile:
+        data = myfile.read()
+    return data
 
 if (__name__)=="__main__":
     app.run(debug=True)

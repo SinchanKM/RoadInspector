@@ -58,6 +58,8 @@ def main():
  cv2.destroyAllWindows()
  hull = cv2.convexHull(cnt)
  k = cv2.isContourConvex(approx)
+ if([approx]):
+     return True
 
 #to check convexity
  print(k)
